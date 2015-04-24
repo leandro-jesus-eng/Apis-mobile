@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Ápis</string>
+    <string name="menu_settings">Settings</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
+    <string name="localizacao">Obter GPS</string>
+    <string name="acuracia">Acurácia(metros)</string>
+    <string name="altitude">Altitude(metros)</string>
+    <string name="bearing">Bearing(direção horinzontal)</string>
+    <string name="velocidade">Velocidade(Km/h)</string>
+    <string name="time">UTC Time</string>
+         
+</resources>
