@@ -7,16 +7,18 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.res.Configuration;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Vibrator;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -40,15 +42,26 @@ public class MainActivity extends Activity {
     private Button btAndando;
     private Button btDeitado;
     private Button btEmPe;
+    private Button btDeitadoRuminando;
+    private Button btEmPeRuminando;
         
     public static final String ARQUIVO = "dadosApis.txt";
+    
+    private Timer timer;
 
 	@Override // Método onCreate, iniciada quando o aplicativo é aberto
 	protected void onCreate(Bundle savedInstanceState) {
+		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
         setupElements();
 	}
+	
+	class RemindTask extends TimerTask {
+        public void run() {
+            vibrar();
+        }
+    }
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -109,6 +122,22 @@ public class MainActivity extends Activity {
             	mediaPlayer.start();
         }});
         
+        btDeitadoRuminando = (Button) findViewById(R.id.btDeitadoRuminando);
+        btDeitadoRuminando.setEnabled(false);
+        btDeitadoRuminando.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v){
+            	gravarDados("Deitado-Ruminando");
+            	mediaPlayer.start();
+        }});
+        
+        btEmPeRuminando = (Button) findViewById(R.id.btEmPeRuminando);
+        btEmPeRuminando.setEnabled(false);
+        btEmPeRuminando.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v){
+            	gravarDados("EmPeRuminando");
+            	mediaPlayer.start();
+        }});
+        
     }
     //Método que faz a leitura de fato dos valores recebidos do GPS
     public void startGPS(){
@@ -121,6 +150,11 @@ public class MainActivity extends Activity {
                 	btAndando.setEnabled(true);
                 	btDeitado.setEnabled(true);
                 	btEmPe.setEnabled(true);
+                	btDeitadoRuminando.setEnabled(true);
+                	btEmPeRuminando.setEnabled(true);
+                	
+                	timer = new Timer();
+            		timer.scheduleAtFixedRate(new RemindTask(), 60000, 60000);
             	}
             	locationAtual = locat;
             	
@@ -198,4 +232,11 @@ public class MainActivity extends Activity {
             System.out.println(e.toString());
         }
     }
-}
+    
+    private void vibrar()
+    {
+        Vibrator rr = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        long milliseconds = 1000;//'30' é o tempo em milissegundos, é basicamente o tempo de duração da vibração. portanto, quanto maior este numero, mais tempo de vibração você irá ter
+        rr.vibrate(milliseconds); 
+    }
+}	

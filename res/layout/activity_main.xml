@@ -175,5 +175,25 @@
             android:text="Em Pé (standing)" />
 
     </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/btDeitadoRuminando"
+            android:layout_width="wrap_content"
+            android:layout_height="212dp"
+            android:layout_weight="0.5"
+            android:text="Deitado-Ruminando" />
+
+        <Button
+            android:id="@+id/btEmPeRuminando"
+            android:layout_width="wrap_content"
+            android:layout_height="212dp"
+            android:layout_weight="0.5"
+            android:text="Em Pé-Ruminando" />
+
+    </LinearLayout>
 
 </LinearLayout>

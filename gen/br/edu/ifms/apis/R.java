@@ -24,11 +24,13 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f090013;
+        public static final int action_settings=0x7f090015;
         public static final int btAndando=0x7f090010;
         public static final int btComendo=0x7f09000f;
         public static final int btDeitado=0x7f090011;
+        public static final int btDeitadoRuminando=0x7f090013;
         public static final int btEmPe=0x7f090012;
+        public static final int btEmPeRuminando=0x7f090014;
         public static final int btLocalizar=0x7f09000e;
         public static final int edAcuracia=0x7f090005;
         public static final int edAltitude=0x7f090007;
