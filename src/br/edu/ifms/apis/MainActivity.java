@@ -12,6 +12,7 @@ import java.util.TimerTask;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -44,10 +45,19 @@ public class MainActivity extends Activity {
     private Button btEmPe;
     private Button btDeitadoRuminando;
     private Button btEmPeRuminando;
+    
+    private Button btColarLaranja;
+    private Button btColarVerde;
         
-    public static final String ARQUIVO = "dadosApis.txt";
+    public static final String ARQUIVO_LARANJA = "dadosApisLaranja.txt";
+    public static final String ARQUIVO_VERDE = "dadosApisVerde.txt";
+    
+    public static boolean ARQUIVO_VERDE_SELECIONADO = false;
+    
     
     private Timer timer;
+    
+    
 
 	@Override // Método onCreate, iniciada quando o aplicativo é aberto
 	protected void onCreate(Bundle savedInstanceState) {
@@ -85,8 +95,9 @@ public class MainActivity extends Activity {
                         
         btLocalizar = (Button) findViewById(R.id.btLocalizar);
         btLocalizar.setOnClickListener(new Button.OnClickListener() {
-            public void onClick(View v){
-                startGPS();
+            public void onClick(View v){            	
+            	startGPS();         
+            	mediaPlayer.start();
         }});
         
         btComendo = (Button) findViewById(R.id.btComendo);
@@ -138,6 +149,52 @@ public class MainActivity extends Activity {
             	mediaPlayer.start();
         }});
         
+        btColarLaranja = (Button) findViewById(R.id.btColarLaranja);
+        btColarLaranja.setEnabled(false);
+        btColarLaranja.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v){
+            	ARQUIVO_VERDE_SELECIONADO = false;
+            	
+            	btComendo.setEnabled(true);
+            	btAndando.setEnabled(true);
+            	btDeitado.setEnabled(true);
+            	btEmPe.setEnabled(true);
+            	btDeitadoRuminando.setEnabled(true);
+            	btEmPeRuminando.setEnabled(true);
+            	
+            	btComendo.setTextColor(Color.parseColor("#FF8C00"));
+            	btAndando.setTextColor(Color.parseColor("#FF8C00"));
+            	btDeitado.setTextColor(Color.parseColor("#FF8C00"));
+            	btEmPe.setTextColor(Color.parseColor("#FF8C00"));
+            	btDeitadoRuminando.setTextColor(Color.parseColor("#FF8C00"));
+            	btEmPeRuminando.setTextColor(Color.parseColor("#FF8C00"));
+            	
+            	mediaPlayer.start();
+        }});
+        
+        btColarVerde = (Button) findViewById(R.id.btColarVerde);
+        btColarVerde.setEnabled(false);
+        btColarVerde.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v){
+            	ARQUIVO_VERDE_SELECIONADO = true;
+            	
+            	btComendo.setEnabled(true);
+            	btAndando.setEnabled(true);
+            	btDeitado.setEnabled(true);
+            	btEmPe.setEnabled(true);
+            	btDeitadoRuminando.setEnabled(true);
+            	btEmPeRuminando.setEnabled(true);
+            	
+            	btComendo.setTextColor(Color.parseColor("#008B00"));
+            	btAndando.setTextColor(Color.parseColor("#008B00"));
+            	btDeitado.setTextColor(Color.parseColor("#008B00"));
+            	btEmPe.setTextColor(Color.parseColor("#008B00"));
+            	btDeitadoRuminando.setTextColor(Color.parseColor("#008B00"));
+            	btEmPeRuminando.setTextColor(Color.parseColor("#008B00"));
+            	
+            	mediaPlayer.start();
+        }});
+        
     }
     //Método que faz a leitura de fato dos valores recebidos do GPS
     public void startGPS(){
@@ -145,13 +202,10 @@ public class MainActivity extends Activity {
         LocationListener lListener = new LocationListener() {
             public void onLocationChanged(Location locat) {
 
-            	if(locationAtual == null) {
-            		btComendo.setEnabled(true);
-                	btAndando.setEnabled(true);
-                	btDeitado.setEnabled(true);
-                	btEmPe.setEnabled(true);
-                	btDeitadoRuminando.setEnabled(true);
-                	btEmPeRuminando.setEnabled(true);
+            	if(locationAtual == null) {                	
+                	btColarLaranja.setEnabled(true);
+                	btColarVerde.setEnabled(true);
+                	mediaPlayer.start();
                 	
                 	timer = new Timer();
             		timer.scheduleAtFixedRate(new RemindTask(), 60000, 60000);
@@ -213,7 +267,13 @@ public class MainActivity extends Activity {
     private void gravarArquivo(String conteudo) {
         try {
             try {
-                File f = new File(Environment.getExternalStorageDirectory()+"/"+ARQUIVO);
+            	File f;
+            	if(ARQUIVO_VERDE_SELECIONADO == true) {
+            		f = new File(Environment.getExternalStorageDirectory()+"/"+ARQUIVO_VERDE);
+            	} else {
+            		f = new File(Environment.getExternalStorageDirectory()+"/"+ARQUIVO_LARANJA);
+            	}
+            	
                 if(!f.exists()){
         			f.createNewFile();
         		}
