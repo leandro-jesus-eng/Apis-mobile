@@ -93,7 +93,7 @@ public class MainActivity extends Activity {
         btComendo.setEnabled(false);
         btComendo.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v){
-            	gravarDados("Comendo");
+            	gravarDados("Pastando");
             	mediaPlayer.start();
             	
         }});
@@ -134,7 +134,7 @@ public class MainActivity extends Activity {
         btEmPeRuminando.setEnabled(false);
         btEmPeRuminando.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v){
-            	gravarDados("EmPeRuminando");
+            	gravarDados("EmPe-Ruminando");
             	mediaPlayer.start();
         }});
         
