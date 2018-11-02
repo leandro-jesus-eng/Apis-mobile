@@ -1,6 +1,8 @@
 <resources>
 
     <color name="laranja">#FFA500</color>
+    <color name="vermelho">#FF0000</color>
+    <color name="amarelo">#FFFF00</color>
     <color name="marrom">#CD3333</color>
     
     <color name="verde">#00FF00</color>

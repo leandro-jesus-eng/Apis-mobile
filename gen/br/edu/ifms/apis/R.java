@@ -11,10 +11,12 @@ public final class R {
     public static final class attr {
     }
     public static final class color {
+        public static final int amarelo=0x7f050002;
         public static final int laranja=0x7f050000;
-        public static final int marrom=0x7f050001;
-        public static final int musgo=0x7f050003;
-        public static final int verde=0x7f050002;
+        public static final int marrom=0x7f050003;
+        public static final int musgo=0x7f050005;
+        public static final int verde=0x7f050004;
+        public static final int vermelho=0x7f050001;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -32,35 +34,30 @@ public final class R {
         public static final int activity_vertical_margin=0x7f060001;
     }
     public static final class drawable {
-        public static final int button_laranja=0x7f020000;
-        public static final int button_verde=0x7f020001;
-        public static final int ic_launcher=0x7f020002;
+        public static final int button_amarelo=0x7f020000;
+        public static final int button_laranja=0x7f020001;
+        public static final int button_toggle=0x7f020002;
+        public static final int button_verde=0x7f020003;
+        public static final int button_vermelho=0x7f020004;
+        public static final int ic_launcher=0x7f020005;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a0017;
-        public static final int btAndando=0x7f0a0012;
-        public static final int btColarLaranja=0x7f0a000f;
-        public static final int btColarVerde=0x7f0a0010;
-        public static final int btComendo=0x7f0a0011;
-        public static final int btDeitado=0x7f0a0013;
-        public static final int btDeitadoRuminando=0x7f0a0015;
-        public static final int btEmPe=0x7f0a0014;
-        public static final int btEmPeRuminando=0x7f0a0016;
-        public static final int btLocalizar=0x7f0a000e;
-        public static final int edAcuracia=0x7f0a0005;
-        public static final int edAltitude=0x7f0a0007;
-        public static final int edBearing=0x7f0a0009;
-        public static final int edLatitude=0x7f0a0001;
-        public static final int edLongitude=0x7f0a0003;
-        public static final int edTime=0x7f0a000d;
-        public static final int edVelocidade=0x7f0a000b;
-        public static final int textView1=0x7f0a0000;
-        public static final int textView2=0x7f0a0002;
-        public static final int textView3=0x7f0a0004;
-        public static final int textView4=0x7f0a0006;
-        public static final int textView5=0x7f0a0008;
-        public static final int textView6=0x7f0a000a;
-        public static final int textView7=0x7f0a000c;
+        public static final int action_settings=0x7f0a000f;
+        public static final int btColarAmarelo=0x7f0a0002;
+        public static final int btColarVerde=0x7f0a0001;
+        public static final int btColarVermelho=0x7f0a0000;
+        public static final int btSalvar=0x7f0a000e;
+        public static final int editObs=0x7f0a000d;
+        public static final int toggleAcMonta=0x7f0a0008;
+        public static final int toggleInquiet=0x7f0a000a;
+        public static final int toggleMontaOutra=0x7f0a0009;
+        public static final int toggleOD=0x7f0a0005;
+        public static final int toggleOP=0x7f0a0004;
+        public static final int togglePastej=0x7f0a0003;
+        public static final int toggleRumDeit=0x7f0a0007;
+        public static final int toggleRumPe=0x7f0a0006;
+        public static final int toggleSol=0x7f0a000c;
+        public static final int toggleSombra=0x7f0a000b;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
