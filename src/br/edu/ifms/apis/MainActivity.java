@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -66,8 +68,6 @@ public class MainActivity extends Activity {
 	public static boolean ARQUIVO_VERDE_SELECIONADO = false;
 	public static boolean ARQUIVO_AMARELO_SELECIONADO = false;
 
-	private Timer timer;
-
 	@Override
 	// Método onCreate, iniciada quando o aplicativo é aberto
 	protected void onCreate(Bundle savedInstanceState) {
@@ -76,11 +76,17 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		setupElements();
 	}
-
+	
+	private Timer timer;
 	class RemindTask extends TimerTask {
 		public void run() {
 			vibrar();
+			timer.cancel();
 		}
+	}
+	private void relembrarAnotacao() {
+		timer = new Timer();
+        timer.schedule(new RemindTask(), 6000 *1000);		
 	}
 
 	@Override
@@ -114,10 +120,9 @@ public class MainActivity extends Activity {
 		btSalvar = (Button) findViewById(R.id.btSalvar);
 		btSalvar.setEnabled(false);
 		btSalvar.setOnClickListener(new Button.OnClickListener() {
-			public void onClick(View v) {
+			public void onClick(View v) {				
 				gravarDados();
 				mediaPlayer.start();
-
 			}
 		});
 
@@ -315,8 +320,6 @@ public class MainActivity extends Activity {
 							toggleRumPe.setChecked(false);
 							toggleRumDeit.setChecked(true);
 						}
-
-						System.out.println("carai 1");
 					}
 				});
 
@@ -526,7 +529,11 @@ public class MainActivity extends Activity {
 	        new DialogInterface.OnClickListener() {
 	        @Override
 	        public void onClick(DialogInterface dialogInterface, int i) {
-	        	String conteudo = "";	        	
+	        	String conteudo = "";
+	        	
+	        	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+	        	conteudo = sdf.format(new Date(System.currentTimeMillis())) +",";
+	        	
 	    		if (togglePastej.isChecked() )
 	    			conteudo += "Sim,";		
 	    		else
@@ -582,6 +589,8 @@ public class MainActivity extends Activity {
 	    		if( editObs.getText().toString().trim().length() > 0) {
 	    			conteudo += editObs.getText().toString().trim();			
 	    		}
+	    		
+	    		System.out.println(conteudo);
 	        	
 	    		gravarArquivo(conteudo);
 	        }
@@ -594,6 +603,8 @@ public class MainActivity extends Activity {
 	}
 
 	private void gravarArquivo(String conteudo) {
+		relembrarAnotacao();
+		
 		try {
 			try {
 				File f;
